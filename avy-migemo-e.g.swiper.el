@@ -93,7 +93,7 @@ RE-SEQ is a list of \(regex . boolean)."
                 (goto-char lbeg)
                 (while (and match-p
                             (re-search-forward re lend t))
-                  (swiper--add-overlay
+                  (swiper--make-overlay
                    (match-beginning 0) (match-end 0)
                    (nth (1+ (mod (+ i-face 2) (1- (length swiper-faces))))
                         swiper-faces)
@@ -150,7 +150,7 @@ RE-SEQ is a list of \(regex . boolean)."
                  (let ((mb (match-beginning 0))
                        (me (match-end 0)))
                    (unless (> (- me mb) 2017)
-                     (swiper--add-overlay mb me
+                     (swiper--make-overlay mb me
                                           (if (zerop ivy--subexps)
                                               (cadr swiper-faces)
                                             (car swiper-faces))
@@ -170,7 +170,7 @@ RE-SEQ is a list of \(regex . boolean)."
                 (setq c-mbeg (or c-mbeg mbeg))
                 (unless (and (match-beginning (1+ i))
                              (= mend (match-beginning (1+ i))))
-                  (swiper--add-overlay
+                  (swiper--make-overlay
                    mbeg (setq l-mend mend)
                    (nth (1+ (mod (+ i-face 2) (1- (length swiper-faces))))
                         swiper-faces)
